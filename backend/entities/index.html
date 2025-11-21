@@ -1,0 +1,1559 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the DonarApp project (Angular Frontend + NestJS Backend)">
+      
+      
+      
+      
+        <link rel="prev" href="../services/">
+      
+      
+        <link rel="next" href="../how-it-works/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Entities - DonarApp Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#database-entities" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="DonarApp Documentation" class="md-header__button md-logo" aria-label="DonarApp Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DonarApp Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Entities
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  Backend API
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="DonarApp Documentation" class="md-nav__button md-logo" aria-label="DonarApp Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DonarApp Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Backend API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core & Shared
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Core & Shared
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guards
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interceptors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interceptors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../middleware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Middleware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../controllers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Controllers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entities
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#user-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User &amp; Authentication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="User &amp; Authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user-userentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User (user.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#people-peopleentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        People (people.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rol-rolentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rol (rol.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typedni-typednientityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TypeDni (type.dni.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#posts-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Posts &amp; Content
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Posts &amp; Content">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-postentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post (post.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typepost-typeportentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TypePost (type.port.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imagepost-imagepostentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ImagePost (image.post.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postliked-postlikedentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PostLiked (post.liked.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tags-tagsentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tags (tags.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#posttag-posttagsentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PostTag (post.tags.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#donations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Donations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Donations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#donation-donationentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Donation (donation.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statusdonation-statusdonationentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StatusDonation (status.donation.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#donationreview-donationreviewentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DonationReview (donation.review.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#articles-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Articles &amp; Inventory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Articles &amp; Inventory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#article-articleentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Article (article.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postarticle-postarticleentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PostArticle (postarticle.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postarticledonation-postarticledonationentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PostArticleDonation (post.article.donation.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statuspostdonationarticle-statuspostdonationarticleentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StatusPostDonationArticle (status.postdonationarticle.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#userarticle-useraticleentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UserArticle (useraticle.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chat-messaging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chat &amp; Messaging
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chat &amp; Messaging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#chat-chatentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chat (chat.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatstatus-chatstatusentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ChatStatus (chat.status.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#userchat-userchatentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UserChat (user.chat.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#messagechat-messagechatentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MessageChat (message.chat.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typemessage-typemessageentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TypeMessage (type.message.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notifications-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notifications &amp; System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Notifications &amp; System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#notify-notifyentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notify (notify.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typenotify-typenotifyentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TypeNotify (type.notify.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usernotify-usernotifyentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UserNotify (user.notify.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system-systementityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System (system.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usersystem-usersystementityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UserSystem (user.system.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audit-auditentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit (audit.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#report-reportentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Report (report.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typereport-typereportentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TypeReport (type.report.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commentsupportid-commentsupportidentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CommentSupportId (comment.supportid.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statussupportid-statussupportidentityts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StatusSupportId (status.supportid.entity.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../how-it-works/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How It Works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="database-entities">Database Entities</h1>
+<p>The application uses TypeORM entities to map to the PostgreSQL database tables. Below is a comprehensive list of all entities in the system.</p>
+<h2 id="user-authentication">User &amp; Authentication</h2>
+<h3 id="user-userentityts">User (<code>user.entity.ts</code>)</h3>
+<p>Represents a user in the system.
+*   <code>id</code>: Primary Key.
+*   <code>username</code>: Unique username.
+*   <code>email</code>: Unique email address.
+*   <code>password</code>: Hashed password.
+*   <code>rol</code>: Relation to <code>RolEntity</code>.
+*   <code>people</code>: Relation to <code>PeopleEntity</code> (Personal details).
+*   <code>profilePhoto</code>: URL to profile photo.
+*   <code>location</code>: User location data.
+*   <code>verified</code>: Boolean indicating if the user is verified.
+*   <code>block</code>: Boolean indicating if the user is blocked.
+*   <code>loginAttempts</code>: Number of failed login attempts.
+*   <code>lockUntil</code>: Timestamp until when the account is locked.
+*   <code>lastLogin</code>: Timestamp of the last login.</p>
+<h3 id="people-peopleentityts">People (<code>people.entity.ts</code>)</h3>
+<p>Stores personal information linked to a user.
+*   <code>id</code>: Primary Key.
+*   <code>name</code>: First name.
+*   <code>lastName</code>: Last name.
+*   <code>dni</code>: Identification number.
+*   <code>typeDni</code>: Relation to <code>TypeDniEntity</code>.
+*   <code>birdthDate</code>: Date of birth.
+*   <code>residencia</code>: Residential address.
+*   <code>municipio</code>: Municipality/City data.
+*   <code>telefono</code>: Phone number.
+*   <code>supportId</code>: URL to support document (e.g., ID scan).</p>
+<h3 id="rol-rolentityts">Rol (<code>rol.entity.ts</code>)</h3>
+<p>Defines user roles (e.g., Admin, User).
+*   <code>id</code>: Primary Key.
+*   <code>rol</code>: Role name (unique).</p>
+<h3 id="typedni-typednientityts">TypeDni (<code>type.dni.entity.ts</code>)</h3>
+<p>Defines types of identification documents.
+*   <code>id</code>: Primary Key.
+*   <code>type</code>: Document type name (unique).</p>
+<h2 id="posts-content">Posts &amp; Content</h2>
+<h3 id="post-postentityts">Post (<code>post.entity.ts</code>)</h3>
+<p>Represents a user's post (donation request or offer).
+*   <code>id</code>: Primary Key.
+*   <code>title</code>: Post title.
+*   <code>message</code>: Post content/description.
+*   <code>user</code>: Relation to <code>UserEntity</code> (Creator).
+*   <code>typePost</code>: Relation to <code>TypePostEntity</code>.
+*   <code>tags</code>: Relation to <code>PostTagEntity</code>.
+*   <code>imagePost</code>: Relation to <code>ImagePostEntity</code>.
+*   <code>postLiked</code>: Relation to <code>PostLikedEntity</code>.
+*   <code>postArticle</code>: Relation to <code>PostArticleEntity</code>.</p>
+<h3 id="typepost-typeportentityts">TypePost (<code>type.port.entity.ts</code>)</h3>
+<p>Defines types of posts (e.g., Donation, Request).
+*   <code>id</code>: Primary Key.
+*   <code>type</code>: Post type name (unique).</p>
+<h3 id="imagepost-imagepostentityts">ImagePost (<code>image.post.entity.ts</code>)</h3>
+<p>Stores images associated with a post.
+*   <code>id</code>: Primary Key.
+*   <code>post</code>: Relation to <code>PostEntity</code>.
+*   <code>image</code>: URL or path to the image.</p>
+<h3 id="postliked-postlikedentityts">PostLiked (<code>post.liked.entity.ts</code>)</h3>
+<p>Tracks likes on posts.
+*   <code>id</code>: Primary Key.
+*   <code>post</code>: Relation to <code>PostEntity</code>.
+*   <code>user</code>: Relation to <code>UserEntity</code>.</p>
+<h3 id="tags-tagsentityts">Tags (<code>tags.entity.ts</code>)</h3>
+<p>Defines tags that can be applied to posts.
+*   <code>id</code>: Primary Key.
+*   <code>tag</code>: Tag name (unique).</p>
+<h3 id="posttag-posttagsentityts">PostTag (<code>post.tags.entity.ts</code>)</h3>
+<p>Associates tags with posts (Many-to-Many relationship).
+*   <code>id</code>: Primary Key.
+*   <code>post</code>: Relation to <code>PostEntity</code>.
+*   <code>tag</code>: Relation to <code>TagsEntity</code>.</p>
+<h2 id="donations">Donations</h2>
+<h3 id="donation-donationentityts">Donation (<code>donation.entity.ts</code>)</h3>
+<p>Represents a donation transaction.
+*   <code>id</code>: Primary Key.
+*   <code>post</code>: Relation to <code>PostEntity</code>.
+*   <code>user</code>: Relation to <code>UserEntity</code> (Donor).
+*   <code>statusDonation</code>: Relation to <code>StatusDonationEntity</code>.
+*   <code>lugarRecogida</code>: Pickup location.
+*   <code>lugarDonacion</code>: Donation location.
+*   <code>fechaMaximaEntrega</code>: Deadline for delivery.
+*   <code>comments</code>: JSON field for additional comments.
+*   <code>reviewwDonation</code>: Relation to <code>DonationReviewEntity</code>.
+*   <code>chat</code>: Relation to <code>ChatEntity</code>.</p>
+<h3 id="statusdonation-statusdonationentityts">StatusDonation (<code>status.donation.entity.ts</code>)</h3>
+<p>Defines possible statuses for a donation.
+*   <code>id</code>: Primary Key.
+*   <code>status</code>: Status name (unique).</p>
+<h3 id="donationreview-donationreviewentityts">DonationReview (<code>donation.review.entity.ts</code>)</h3>
+<p>Stores reviews for completed donations.
+*   <code>id</code>: Primary Key.
+*   <code>review</code>: Text content of the review.
+*   <code>raiting</code>: Numerical rating (1-5).
+*   <code>user</code>: Relation to <code>UserEntity</code> (Reviewer).
+*   <code>donation</code>: Relation to <code>DonationEntity</code>.</p>
+<h2 id="articles-inventory">Articles &amp; Inventory</h2>
+<h3 id="article-articleentityts">Article (<code>article.entity.ts</code>)</h3>
+<p>Represents a generic article or item type.
+*   <code>id</code>: Primary Key.
+*   <code>name</code>: Article name.
+*   <code>descripcion</code>: Description.</p>
+<h3 id="postarticle-postarticleentityts">PostArticle (<code>postarticle.entity.ts</code>)</h3>
+<p>Associates articles with a post (items requested/offered).
+*   <code>id</code>: Primary Key.
+*   <code>article</code>: Relation to <code>ArticleEntity</code>.
+*   <code>post</code>: Relation to <code>PostEntity</code>.
+*   <code>quantity</code>: Quantity of the article.
+*   <code>status</code>: Relation to <code>StatusPostDonationArticle</code>.</p>
+<h3 id="postarticledonation-postarticledonationentityts">PostArticleDonation (<code>post.article.donation.entity.ts</code>)</h3>
+<p>Tracks specific articles within a donation.
+*   <code>id</code>: Primary Key.
+*   <code>donation</code>: Relation to <code>DonationEntity</code>.
+*   <code>postArticle</code>: Relation to <code>PostArticleEntity</code>.
+*   <code>quantity</code>: Quantity donated.</p>
+<h3 id="statuspostdonationarticle-statuspostdonationarticleentityts">StatusPostDonationArticle (<code>status.postdonationarticle.entity.ts</code>)</h3>
+<p>Defines statuses for articles within a donation post.
+*   <code>id</code>: Primary Key.
+*   <code>status</code>: Status name.</p>
+<h3 id="userarticle-useraticleentityts">UserArticle (<code>useraticle.entity.ts</code>)</h3>
+<p>Associates articles with a user (e.g., user inventory or needs).
+*   <code>id</code>: Primary Key.
+*   <code>user</code>: Relation to <code>UserEntity</code>.
+*   <code>article</code>: Relation to <code>ArticleEntity</code>.
+*   <code>cant</code>: Quantity.
+*   <code>needed</code>: Boolean indicating if it's a need.</p>
+<h2 id="chat-messaging">Chat &amp; Messaging</h2>
+<h3 id="chat-chatentityts">Chat (<code>chat.entity.ts</code>)</h3>
+<p>Represents a chat session.
+*   <code>id</code>: Primary Key.
+*   <code>chatName</code>: Name of the chat.
+*   <code>chatStatus</code>: Relation to <code>ChatStatusEntity</code>.
+*   <code>donation</code>: Relation to <code>DonationEntity</code>.
+*   <code>userChat</code>: Relation to <code>UserChatEntity</code>.
+*   <code>messageChat</code>: Relation to <code>MessageChatEntity</code>.</p>
+<h3 id="chatstatus-chatstatusentityts">ChatStatus (<code>chat.status.entity.ts</code>)</h3>
+<p>Defines statuses for a chat.
+*   <code>id</code>: Primary Key.
+*   <code>status</code>: Status name (unique).</p>
+<h3 id="userchat-userchatentityts">UserChat (<code>user.chat.entity.ts</code>)</h3>
+<p>Associates users with chat sessions.
+*   <code>id</code>: Primary Key.
+*   <code>user</code>: Relation to <code>UserEntity</code>.
+*   <code>chat</code>: Relation to <code>ChatEntity</code>.
+*   <code>donator</code>: Boolean indicating if the user is the donor.
+*   <code>admin</code>: Boolean indicating if the user is an admin.</p>
+<h3 id="messagechat-messagechatentityts">MessageChat (<code>message.chat.entity.ts</code>)</h3>
+<p>Represents an individual message in a chat.
+*   <code>id</code>: Primary Key.
+*   <code>chat</code>: Relation to <code>ChatEntity</code>.
+*   <code>user</code>: Relation to <code>UserEntity</code> (Sender).
+*   <code>message</code>: Message content.
+*   <code>type</code>: Relation to <code>TypeMessageEntity</code>.
+*   <code>read</code>: Boolean indicating if the message has been read.</p>
+<h3 id="typemessage-typemessageentityts">TypeMessage (<code>type.message.entity.ts</code>)</h3>
+<p>Defines types of messages (e.g., text, image).
+*   <code>id</code>: Primary Key.
+*   <code>type</code>: Message type name (unique).</p>
+<h2 id="notifications-system">Notifications &amp; System</h2>
+<h3 id="notify-notifyentityts">Notify (<code>notify.entity.ts</code>)</h3>
+<p>Represents a system notification.
+*   <code>id</code>: Primary Key.
+*   <code>title</code>: Notification title.
+*   <code>message</code>: Notification body.
+*   <code>link</code>: Optional link.
+*   <code>type</code>: Relation to <code>TypeNotifyEntity</code>.</p>
+<h3 id="typenotify-typenotifyentityts">TypeNotify (<code>type.notify.entity.ts</code>)</h3>
+<p>Defines types of notifications.
+*   <code>id</code>: Primary Key.
+*   <code>type</code>: Notification type name (unique).</p>
+<h3 id="usernotify-usernotifyentityts">UserNotify (<code>user.notify.entity.ts</code>)</h3>
+<p>Associates notifications with users (recipient tracking).
+*   <code>id</code>: Primary Key.
+*   <code>user</code>: Relation to <code>UserEntity</code>.
+*   <code>notify</code>: Relation to <code>NotifyEntity</code>.
+*   <code>read</code>: Boolean indicating if the notification has been read.</p>
+<h3 id="system-systementityts">System (<code>system.entity.ts</code>)</h3>
+<p>Stores system-wide configurations or legal texts.
+*   <code>id</code>: Primary Key.
+*   <code>termsAndConditions</code>: Terms and conditions text.
+*   <code>privacyPolicy</code>: Privacy policy text.
+*   <code>aboutUs</code>: About us text.</p>
+<h3 id="usersystem-usersystementityts">UserSystem (<code>user.system.entity.ts</code>)</h3>
+<p>Associates users with system acceptances (e.g., terms accepted).
+*   <code>id</code>: Primary Key.
+*   <code>user</code>: Relation to <code>UserEntity</code>.
+*   <code>system</code>: Relation to <code>systemEntity</code>.</p>
+<h3 id="audit-auditentityts">Audit (<code>audit.entity.ts</code>)</h3>
+<p>Logs system actions for auditing purposes.
+*   <code>id</code>: Primary Key.
+*   <code>user</code>: Relation to <code>UserEntity</code>.
+*   <code>action</code>: Action performed.
+*   <code>comment</code>: Additional details.
+*   <code>status</code>: Status of the action.</p>
+<h3 id="report-reportentityts">Report (<code>report.entity.ts</code>)</h3>
+<p>Represents a user report (e.g., reporting a post or user).
+*   <code>id</code>: Primary Key.
+*   <code>user</code>: Relation to <code>UserEntity</code> (Reporter).
+*   <code>typeReport</code>: Relation to <code>TypeReportEntity</code>.
+*   <code>comments</code>: Report details.</p>
+<h3 id="typereport-typereportentityts">TypeReport (<code>type.report.entity.ts</code>)</h3>
+<p>Defines types of reports.
+*   <code>id</code>: Primary Key.
+*   <code>type</code>: Report type name (unique).</p>
+<h3 id="commentsupportid-commentsupportidentityts">CommentSupportId (<code>comment.supportid.entity.ts</code>)</h3>
+<p>Stores comments related to support ID verification.
+*   <code>id</code>: Primary Key.
+*   <code>comment</code>: Comment text.
+*   <code>user</code>: Relation to <code>UserEntity</code>.
+*   <code>status</code>: Relation to <code>StatusSupportIdEntity</code>.
+*   <code>processedBy</code>: ID of the admin who processed it.
+*   <code>processedAt</code>: Timestamp of processing.
+*   <code>rejectReason</code>: Reason for rejection.</p>
+<h3 id="statussupportid-statussupportidentityts">StatusSupportId (<code>status.supportid.entity.ts</code>)</h3>
+<p>Defines statuses for support ID verification.
+*   <code>id</code>: Primary Key.
+*   <code>name</code>: Status name.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../services/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Services">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Services
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../how-it-works/" class="md-footer__link md-footer__link--next" aria-label="Next: How It Works">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                How It Works
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "navigation.footer"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>
